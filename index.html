@@ -26,7 +26,11 @@
 
 
 
+
+
 </style><script role="script" id="twine-user-script" type="text/twine-javascript">
+
+
 
 
 
@@ -138,15 +142,15 @@ Now try to get the other endings!</tw-passagedata><tw-passagedata pid="26" name=
    
    [[Play-&gt;Start]]
    [[Info]]
-   [[Expansions-&gt;promo codes]]</tw-passagedata><tw-passagedata pid="27" name="Info" tags="" position="1763,431">   =&gt;&lt;=
+   [[Expansions-&gt;promo codes]]</tw-passagedata><tw-passagedata pid="27" name="Info" tags="" position="1761,430">   =&gt;&lt;=
    A game made by Evan Samano, using Twine 2.
    
-   Version 1.1
+   Version 1.2.1
    
    [[Change Log]]
    [[Back-&gt;Menu]]</tw-passagedata><tw-passagedata pid="28" name="promo codes" tags="" position="1900,290">=&gt;&lt;=
 (set: $check to(prompt: &quot;Enter a code&quot;))
-(if: $check is &quot;Promo Code&quot;)[dfdg(set: $pmc to 2)]
+(if: $check is &quot;Promo Code&quot;)[That was a code!(set: $pmc to 2)]
 (else-if: $check is &quot;123&quot;)[this is a test]
 (else-if: $check is &quot;hi&quot;)[This is a test]
 (else:)[That isn&#x27;t a code.]
