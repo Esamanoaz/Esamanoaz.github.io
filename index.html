@@ -22,6 +22,10 @@
 
 
 
+
+
+
+
 </style><script role="script" id="twine-user-script" type="text/twine-javascript">
 
 
@@ -34,9 +38,15 @@
 
 
 
-</script><tw-passagedata pid="1" name="Start" tags="" position="1341,300">   You are locked in a room, you are isolated in space, and you are not happy.
+
+
+
+
+</script><tw-passagedata pid="1" name="Start" tags="" position="1340,300">   You are locked in a room, you are isolated in space, and you are not happy.
         (set: $x to 1) (set: $w to 1) (set: $redcode to 1) (set: $cards to 1)
 [[Examine Your Surroundings-&gt;examine]]
+[[Menu]]
+(if: $pmc &gt; 1)[[[Promo Codes-&gt;pmc list]]]
 
 &amp;copy; Evan Samano 2016</tw-passagedata><tw-passagedata pid="2" name="examine" tags="" position="1193,306">   You look around and see that you are lying on a wooden bed. You are in a small room. There are several windows that show you the outside world. Space. The only exits are a door leaving the room and a vent in the ceiling.
    
@@ -45,7 +55,7 @@
    or [[Examine The Bed-&gt;bed]]
    and finally, you can also [[Examine The Vent-&gt;vent]] 
    
-   (if: $x &gt; 1)[[[Examine Bed Sheets]]]</tw-passagedata><tw-passagedata pid="3" name="door" tags="" position="1065,307">   You walk over to the door and notice there is a keypad nearby the door. Under further examination, you find that it is a four letter code. The door is made of a material that looks of metal.
+   (if: $x &gt; 1)[[[Examine Bed Sheets]]]</tw-passagedata><tw-passagedata pid="3" name="door" tags="" position="1065,306">   You walk over to the door and notice there is a keypad nearby the door. Under further examination, you find that it is a four letter code. The door is made of a material that looks of metal.
    (if: $x &gt; 1)[[[Enter The Code-&gt;entercode]]]
    [[Back-&gt;examine]]</tw-passagedata><tw-passagedata pid="4" name="window" tags="" position="1069,465">   You look at the windows and notice that one of the windows show another room. It looks like the only way to get into the room is a green door. Maybe, if you get into that room in some way, you may be able to escape this void.
    (set: $w to 2)
@@ -99,11 +109,11 @@
    [[Break The Box]]
    [[Examine Your Surroundings-&gt;examine b]]</tw-passagedata><tw-passagedata pid="19" name="Attack The Guard" tags="" position="593,708">   You come up behind the guard and put your hand over his mouth. You throw him in a closet and lock it. You open the glass box with the key and grab the cards. (set: $cards to 2)
    
-   [[Use The Alarm System-&gt;Distract]]</tw-passagedata><tw-passagedata pid="20" name="Break The Box" tags="" position="752.0001,707">   You smash the box with your fist. Glass goes everywhere, and the guard as well as the other aliens notice.
+   [[Use The Alarm System-&gt;Distract]]</tw-passagedata><tw-passagedata pid="20" name="Break The Box" tags="" position="752,707">   You smash the box with your fist. Glass goes everywhere, and the guard as well as the other aliens notice.
    
    [[ending A&lt;-Continue]]</tw-passagedata><tw-passagedata pid="21" name="examine b" tags="" position="877,702">   You examine the glass box. It looks breakable, but your not sure. The Guard looks ready to defend himself.
    
-   [[Back-&gt;Follow The Guard]]</tw-passagedata><tw-passagedata pid="22" name="[Use The Control Panel" tags="" position="385,603.3333333333334">=&gt;&lt;=
+   [[Back-&gt;Follow The Guard]]</tw-passagedata><tw-passagedata pid="22" name="[Use The Control Panel" tags="" position="385,603">=&gt;&lt;=
    You walk to the center of the room, where the main control panel is. You get a quick rush of excitment as you look over at it. You examine it and learn how to use it quickly. You launch the escape pods and are off to earth! Or what is left of it....
    
    =&gt;&lt;=
@@ -123,34 +133,37 @@
 Thanks for playing!
 :D
 
-Now try to get the other endings!</tw-passagedata><tw-passagedata pid="26" name="Menu" tags="" position="1760,289">   =&gt;&lt;=
+Now try to get the other endings!</tw-passagedata><tw-passagedata pid="26" name="Menu" tags="" position="1760,288">   =&gt;&lt;=
    Welcome To Escape The Space Prison!
    
    [[Play-&gt;Start]]
    [[Info]]
-   [[Expansions-&gt;promo codes]]
-   [[Exit]]</tw-passagedata><tw-passagedata pid="27" name="Info" tags="" position="1764,432">   =&gt;&lt;=
+   [[Expansions-&gt;promo codes]]</tw-passagedata><tw-passagedata pid="27" name="Info" tags="" position="1763,431">   =&gt;&lt;=
    A game made by Evan Samano, using Twine 2.
    
    Version 1.1
    
    [[Change Log]]
-   [[Back-&gt;Menu]]</tw-passagedata><tw-passagedata pid="28" name="promo codes" tags="" position="1924,436">=&gt;&lt;=
+   [[Back-&gt;Menu]]</tw-passagedata><tw-passagedata pid="28" name="promo codes" tags="" position="1900,290">=&gt;&lt;=
 (set: $check to(prompt: &quot;Enter a code&quot;))
-(if: $check is &quot;AbC&quot;)[this is a test]
-(else-if: $checl is &quot;123&quot;)[this is a test]
+(if: $check is &quot;Promo Code&quot;)[dfdg(set: $pmc to 2)]
+(else-if: $check is &quot;123&quot;)[this is a test]
 (else-if: $check is &quot;hi&quot;)[This is a test]
 (else:)[That isn&#x27;t a code.]
 
-[[Back-&gt;Menu]]</tw-passagedata><tw-passagedata pid="29" name="Exit" tags="" position="1927,293">The website menu needs further development. Sorry.
+[[Back-&gt;Menu]]</tw-passagedata><tw-passagedata pid="29" name="Change Log" tags="" position="1760,560">[[Back-&gt;Info]]
 
-[[Back-&gt;Menu]]</tw-passagedata><tw-passagedata pid="30" name="Change Log" tags="" position="1763,581">=&gt;&lt;=
-[[Back-&gt;Info]]
+Version 1.2.1
+
+---
+
+Fixed Expansions
++Expansion List
+  (only reachable with a code)
 
 Version 1.2
 
 ---
-Added the menu!
 
 Bug Fixes
 +Menu
@@ -160,9 +173,14 @@ Bug Fixes
 
 Version 1.1
 ---
-Just some grammar fixes!
 
-Grammar Fixes</tw-passagedata></tw-storydata>
+Grammar Fixes</tw-passagedata><tw-passagedata pid="30" name="pmc list" tags="" position="1335,151">=&gt;&lt;=
+[[Back-&gt;Start]]
+
+This is a list of avaible expansions!
+
+
+0. Expansion List (Promo Code)</tw-passagedata></tw-storydata>
 
 <script title="Twine engine code" data-main="harlowe">/**
  * @license almond 0.3.0 Copyright (c) 2011-2014, The Dojo Foundation All Rights Reserved.
