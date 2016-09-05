@@ -10,7 +10,13 @@
 
 <tw-story></tw-story>
 
-<tw-storydata name="Hardware Tycoon" startnode="14" creator="Twine" creator-version="2.0.8" ifid="DCAB63ED-7CAC-454B-BB98-95C070D23EB9" format="Harlowe" options=""><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">
+<tw-storydata name="Hardware Tycoon Save Proto" startnode="14" creator="Twine" creator-version="2.0.8" ifid="DCAB63ED-7CAC-454B-BB98-95C070D23EB9" format="Harlowe" options=""><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">
+
+
+
+
+
+
 
 
 
@@ -28,139 +34,249 @@
 
 
 
-</script><tw-passagedata pid="1" name="Menu" tags="" position="495,125">=&gt;&lt;=
-[[Play-&gt;Intro]]
+
+
+
+
+
+
+</script><tw-passagedata pid="1" name="Menu" tags="" position="373.33333333333337,116.66666666666667">=&gt;&lt;=
+{(if: (saved-games:) contains &quot;Slot A&quot;)[
+  (link: &quot;Continue Game&quot;)[(load-game:&quot;Slot A&quot;)]
+]}
+[[New Game-&gt;Intro]]
 [[Info]]
 [[More Games-&gt;ad]]
 (please navigate to Info-&gt;Notes first)
 
-&amp;copy; Evan Samano 2016</tw-passagedata><tw-passagedata pid="2" name="Intro" tags="" position="495,320">=&gt;&lt;=
-You have dreamed of being the CEO of your very own hardware Industrie. You managed to get a loan of $5000 with no intrest! It has to be payed back by June 30, 2016. The current day is May 2, 2016. (set: $c_obj to &quot;Pay Back Loan&quot;)
+&amp;copy; Evan Samano 2016</tw-passagedata><tw-passagedata pid="2" name="Intro" tags="" position="378,275">=&gt;&lt;=
+You have dreamed of being the CEO of your very own hardware Industrie for a long time. You managed to get a loan of $100. Your company will soon be the best hardware company in the world.
 
 You currently live in your apartment. Lets get started!
 
-[[Continue-&gt;Start]]</tw-passagedata><tw-passagedata pid="3" name="Info" tags="" position="341.6666666666667,125">=&gt;&lt;=
+[[Continue-&gt;Setup]]</tw-passagedata><tw-passagedata pid="3" name="Info" tags="" position="200,115">=&gt;&lt;=
 A game by Evan Samano.
-Build: 6
-Version: 0.0.3
+Version: 0.1
+Started in September 2016.
 
 [[Whats New?]]
 [[Notes]]
-[[Back-&gt;Menu]]</tw-passagedata><tw-passagedata pid="4" name="ad" tags="" position="655,128.33333333333334">=&gt;&lt;=
+[[Back-&gt;Menu]]</tw-passagedata><tw-passagedata pid="4" name="ad" tags="" position="505,125">=&gt;&lt;=
 &lt;a href=&quot;etsp.html&quot;&gt;Escape The Space Prison&lt;/a&gt;
 
-[[Back-&gt;Menu]]</tw-passagedata><tw-passagedata pid="5" name="Start" tags="" position="491.6666666666667,468.33333333333337">=&gt;&lt;=
-(set: $day to 1) (set: $exp to 0)(set: $lose to 0)(set: $research to 0)
-(set: $money to 5000)
-(set: $lvl to 1)
-(set: $item1 to 5)
+[[Back-&gt;Menu]]</tw-passagedata><tw-passagedata pid="5" name="Setup" tags="" position="380,410">=&gt;&lt;=
+{(set: $day to 1) (set: $exp to 0)(set: $lose to 0)(set: $research to 0)
+(set: $money to 5000)(set: $a_contract to &quot;Sell 30 Jumper Wires&quot;)
+(set: $unlock6 to 1)(set: $lvl to 1) (set: $a_obj to &quot;Pay Back Loan&quot;)
+(set: $item1 to 5)(set: $item6 to 0)(set: $labUnlock to 1)
 (set: $item2 to 0)(set: $item3 to 0)(set: $item4 to 0)(set: $item5 to 0)
-(set: $unlock5 to 1)
-(set: $company to(prompt: &quot;What is Your Company Name?&quot;))
-
+(set: $unlock5 to 1)(set: $clvl2 to 1)(set: $a_research to &quot;Prototyping&quot;)
+(set: $company to(prompt: &quot;What is Your Company Name?&quot;))}
 $company
 
-[[Continue-&gt;Play]]</tw-passagedata><tw-passagedata pid="6" name="Play" tags="" position="721.6666666666667,465">=&gt;&lt;=
+[[Continue-&gt;Play]]</tw-passagedata><tw-passagedata pid="6" name="Play" tags="" position="595,406.6666666666667">{(if: $exp &gt; 5)[(set: $lvl to 2)]
+(if: $exp &gt; 54)[(set: $lvl to 3)]
+(if: $exp &gt; 154)[(set: $lvl to 4)]
+(if: $exp &gt; 304)[(set: $lvl to 5)]
+(if: $exp &gt; 504)[(set: $lvl to 6)]
+(if: $exp &gt; 854)[(set: $lvl to 7)]
+(if: $money &lt; 1)[(set: $lose to 1)]}
+=&gt;&lt;=
 $company
 Day $day
 $$money
-Level (if: $exp &gt; 5(set: $lvl to 2))[$lvl]
+Level $lvl
 
+{(link:&quot;Save game&quot;)[
+  (if:(save-game:&quot;Slot A&quot;))[
+    Game saved!
+  ](else: )[
+    Sorry, your game couldn&#x27;t be saved.
+  ]
+]}
 [[Exit-&gt;Menu]]
 [[Check Inventory-&gt;inventory]]
 [[Craft Item-&gt;craft]]
 [[Shop]]
 [[Contracts]]
 [[Objectives]]
-[[End Turn]]
+[[Hints]]
+(if: $labUnlock is 2)[[[Lab-&gt;Lab]]]
 
-(if: $lose is 1)[you have lost... [[Menu-&gt;Menu]](set: $money to -10000)]</tw-passagedata><tw-passagedata pid="7" name="craft" tags="" position="726.6666666666667,610">=&gt;&lt;=
+(if: $lose is 1)[you have lost... [[Play Again-&gt;Intro]](set: $money to -1000)]
+(if: $lvl &gt; 1 and $clvl2 is 1)[[[Level Up!-&gt;level_2]]]</tw-passagedata><tw-passagedata pid="7" name="craft" tags="" position="598,626">=&gt;&lt;=
 You can craft a wire cord for 1 metal. [[Craft-&gt;craftWire]]
+You can craft 10 Jumper Wires for 1 wire cord. [[Craft-&gt;craftJumper]]
 
 [[Check Inventory-&gt;inventory]]
-[[Back-&gt;Play]]</tw-passagedata><tw-passagedata pid="8" name="inventory" tags="" position="876.6666666666667,611.6666666666667">=&gt;&lt;=
+[[Back-&gt;Play]]</tw-passagedata><tw-passagedata pid="8" name="inventory" tags="" position="728,516">=&gt;&lt;=
 [[Back-&gt;Play]]
 [[Craft an Item-&gt;craft]]
 
-You have $item1 metal, (if: $unlock5 is 2)[$item5 wire cords, ]$item2 NOT gates, $item3 AND gates, $item4 OR gates,</tw-passagedata><tw-passagedata pid="9" name="Contracts" tags="" position="585,610">=&gt;&lt;=
-This will be added later
+You have $item1 Metal, (if: $unlock5 is 2)[$item5 Wire Cords, ](if: $unlock6 is 2)[$item6 Jumper Wires, ]$item2 NOT Gates, $item3 AND Gates, $item4 OR Gates,</tw-passagedata><tw-passagedata pid="9" name="Contracts" tags="" position="276,630">=&gt;&lt;=
+[[Back-&gt;Play]]
 
-:)
+The available contracts are:
 
-[[Back-&gt;Play]]</tw-passagedata><tw-passagedata pid="10" name="craftWire" tags="" position="726.6666666666667,753.3333333333334">=&gt;&lt;=
+MacroSoft : 
+
+Salad Corp : 
+0. (if: $a_contract is &quot;Complete&quot;)[$a_contract](else:)[$a_contract For $19.50 [[Sell Now-&gt;a_contract_complete]]]
+
+TechLogic : 
+
+[[Back-&gt;Play]]</tw-passagedata><tw-passagedata pid="10" name="craftWire" tags="" position="443,768">=&gt;&lt;=
 (set: $unlock5 to 2)(set: $exp to $exp + 2)
 (set: $item1 to $item1 - 1)
 (set: $item5 to $item5 + 1)
 (if: $item1 is -1)[(set: $item5 to $item5 - 1)](if: $item1 is -1)[(set: $item1 to $item1 + 1)]
-[[Continue-&gt;craft]]</tw-passagedata><tw-passagedata pid="11" name="Shop" tags="" position="1506.6666666666667,466.6666666666667">=&gt;&lt;=
+[[Continue-&gt;craft]]</tw-passagedata><tw-passagedata pid="11" name="Shop" tags="" position="1296,403">=&gt;&lt;=
 Welcome to the Shop!
 In stock today are:
 Buy 1 [[Metal-&gt;buy_metal]] for $5
 Buy 10 [[Metal-&gt;buy_metal_ten]] for $50
 Buy 100 [[Metal-&gt;buy_metal_hundred]] for $485
 
-[[Back-&gt;Play]]</tw-passagedata><tw-passagedata pid="12" name="Notes" tags="" position="343.33333333333337,280">=&gt;&lt;=
+
+[[Back-&gt;Play]]</tw-passagedata><tw-passagedata pid="12" name="Notes" tags="" position="200,271.6666666666667">=&gt;&lt;=
 [[Back-&gt;Info]]
 
 0. This game is currently a work in progress.
-0. Some features do not work yet.
-0. The day function is not actully in the game yet.
+0. Some features do &#x27;&#x27;NOT&#x27;&#x27; work yet.
+0. The day function is &#x27;&#x27;NOT&#x27;&#x27; actully in the game yet.
 0. Made with the Harlowe Story Format.
-0. There is &#x27;&#x27;NO&#x27;&#x27; memory in the game. Save your keys(code to get into the game).
+0. Save your keys(code to get into the game).
 0. &#x27;&#x27;Your keys will work throughout the entire pre-alpha through alpha&#x27;&#x27;
+0. Saving will &#x27;&#x27;delete&#x27;&#x27; the previous save, but still save that game.
 
-[[Back-&gt;Info]]</tw-passagedata><tw-passagedata pid="13" name="Objectives" tags="" position="890,285">=&gt;&lt;=
+[[Back-&gt;Info]]</tw-passagedata><tw-passagedata pid="13" name="Objectives" tags="" position="593,258">=&gt;&lt;=
 Your objectives are:
 
-     0. $c_obj
+     0. $a_obj (if: $a_obj is &quot;Complete&quot;)[](else:)[[[Now-&gt;Pay Back Loan Objective]]]
      0. More coming soon!
      
      
-[[Back-&gt;Play]]</tw-passagedata><tw-passagedata pid="14" name="Key into game" tags="" position="620,0">KEEP YOUR KEYS
+[[Back-&gt;Play]]</tw-passagedata><tw-passagedata pid="14" name="Key into game" tags="" position="500,0">KEEP YOUR KEYS
 
-(set: $key_ to (prompt: &quot;&quot;))
+(set: $key_ to (prompt: &quot;Please Enter a key to continue&quot;))
 
 (if: $key_ is &quot;agty-7d3l&quot;)[That is a code!(set: $pass to 1)]
 (else-if: $key_ is &quot;r45s-lzxo&quot;)[That is a code!(set: $pass to 1)]
 (else-if: $key_ is &quot;uddi-6198&quot;)[That is a code!(set: $pass to 1)]
 (else-if: $key_ is &quot;rlac-7rty&quot;)[That is a code!(set: $pass to 1)]
-(else-if: $key_ is &quot;devOverideEntry&quot;)[Are you the creator?(set: $pass to 1)]
+(else-if: $key_ is &quot;entry.overide()&quot;)[Are you the creator?(set: $pass to 1)]
 (else:)[That is not a code.]
 
 
-(if: $pass is 1)[[[Play-&gt;Menu]]]</tw-passagedata><tw-passagedata pid="15" name="Whats New?" tags="" position="180,130">=&gt;&lt;=
+(if: $pass is 1)[[[Play-&gt;Menu]]]</tw-passagedata><tw-passagedata pid="15" name="Whats New?" tags="" position="20,115">=&gt;&lt;=
 [[Back-&gt;Info]]
 
-0.0.3
+0.1 : Simple Beggings
 ---
-+ Shop
++ Save Sytem Working
++ Research added
++ Shop added
++ Level system added
++ Salad Corp Contract added
++ Hints 1-7 added
++ Inventory added
++ Crafting added
+* Bug fixes
+* Grammar/Language fixes
+- Deleted end turn/End day function
 
-
-
-0.0.2
----
-* Crafting fixed
-
-
-
-o.o.1
----
-+ Inventory and Crafting concepts working
-
-[[Back-&gt;Info]]</tw-passagedata><tw-passagedata pid="16" name="buy_metal" tags="" position="1350,620">=&gt;&lt;=
+[[Back-&gt;Info]]</tw-passagedata><tw-passagedata pid="16" name="buy_metal" tags="" position="1430,525">=&gt;&lt;=
 (set: $money to $money - 5)(set: $item1 to $item1 + 1)
 
-[[Thank you for Your Purchase-&gt;Shop]]</tw-passagedata><tw-passagedata pid="17" name="End Turn" tags="" position="720,290">=&gt;&lt;=
-(set: $research to $research + 1)(set: $money to $money - 80)
-(if: $money is 0)[You are out of money!](else-if: $money &lt; -1)[You are bankrupt. You have lost(set: $lose to 1)](set: $day to $day + 1)
-
-[[Continue-&gt;Play]]</tw-passagedata><tw-passagedata pid="18" name="buy_metal_hundred" tags="" position="1680,623.3333333333334">=&gt;&lt;=
+[[Thank you for Your Purchase-&gt;Shop]]</tw-passagedata><tw-passagedata pid="17" name="buy_metal_hundred" tags="" position="1428,270">=&gt;&lt;=
 (set: $money to $money - 485)(set: $item1 to $item1 + 100)
 
-[[Thank you for Your Purchase-&gt;Shop]]</tw-passagedata><tw-passagedata pid="19" name="buy_metal_ten" tags="" position="1510,618.3333333333334">=&gt;&lt;=
+[[Thank you for Your Purchase-&gt;Shop]]</tw-passagedata><tw-passagedata pid="18" name="buy_metal_ten" tags="" position="1430,400">=&gt;&lt;=
 (set: $money to $money - 50)(set: $item1 to $item1 + 10)
 
-[[Thank you for Your Purchase-&gt;Shop]]</tw-passagedata></tw-storydata>
+[[Thank you for Your Purchase-&gt;Shop]]</tw-passagedata><tw-passagedata pid="19" name="craftJumper" tags="" position="598,770">=&gt;&lt;=
+(set: $exp to $exp + 1)(set: $unlock6 to 2)
+(set: $item5 to $item5 - 1)
+(set: $item6 to $item6 + 10)
+(if: $item5 is -1)[(set: $item6 to $item6 - 10)](if: $item5 is -1)[(set: $item5 to $item5 + 1)]
+[[Continue-&gt;craft]]</tw-passagedata><tw-passagedata pid="20" name="DEV-ENTRY-POINT-1" tags="" position="245,413">[[Setup]]</tw-passagedata><tw-passagedata pid="21" name="Pay Back Loan Objective" tags="" position="738,113">=&gt;&lt;=
+Are you sure you want to pay back your loan? You will lose $100, gain 2 research points, and 10 experience.
+
+[[Yes-&gt;pay_loan]]
+[[No-&gt;Objectives]]</tw-passagedata><tw-passagedata pid="22" name="a_contract_complete" tags="" position="115,630">=&gt;&lt;=
+Salad Corp is pleased with your work. They accept the jumper wires.
+{(set: $a_contract to &quot;Complete&quot;)(set: $money to $money + 19.50)(set: $item6 to $item6 - 30)(set: $research to $research + 2)}
+
+[[Back-&gt;Contracts]]</tw-passagedata><tw-passagedata pid="23" name="pay_loan" tags="" position="736,251">=&gt;&lt;=
+Congratulations! You have payed back your loan of $100. (set: $money to $money - 100)(set: $exp to $exp + 10)(set: $research to $research + 2)(set: $a_obj to &quot;Complete&quot;)
+[[Back-&gt;Objectives]]</tw-passagedata><tw-passagedata pid="24" name="Hints" tags="" position="265,766">=&gt;&lt;=
+[[Back-&gt;Play]]
+
+1/10
+
+There is nothing to be ashamed of in a little help. Anytime you need help or are stuck, you can always check here for tips.
+
+[[Next Hint-&gt;hint_2]]</tw-passagedata><tw-passagedata pid="25" name="hint_2" tags="" position="125,761">=&gt;&lt;=
+[[Back-&gt;Hints]]
+
+2/10
+
+&#x27;&#x27;To level up&#x27;&#x27;, you need to gain a certain ammount of experience points. If you craft, complete a contract, or even complete an objective, you will get experience points. Every time you level up, you will get a prize. You can see what your level is by looking at the &#x27;&#x27;top of the Play Menu&#x27;&#x27;
+
+[[Next Hint-&gt;hint_3]]</tw-passagedata><tw-passagedata pid="26" name="hint_3" tags="" position="128,906">=&gt;&lt;=
+[[Back-&gt;hint_2]]
+
+3/10
+
+You can earn experience and research points by completing &#x27;&#x27;objectives&#x27;&#x27;. You can see what your objectives are, by &#x27;&#x27;clicking on the Objectives button on the Play Menu&#x27;&#x27;.
+
+[[Next Hint-&gt;hint_4]]</tw-passagedata><tw-passagedata pid="27" name="hint_4" tags="" position="260,906">=&gt;&lt;=
+[[Back-&gt;hint_3]]
+
+4/10
+
+You can unlock new things by using &#x27;&#x27;research&#x27;&#x27;. You can gain research by completing objectives and completing contracts. To use your research, click on the &#x27;&#x27;Lab&#x27;&#x27; button on the Play Menu.
+
+[[Next Hint-&gt;hint_5]]</tw-passagedata><tw-passagedata pid="28" name="hint_5" tags="" position="261,1048">=&gt;&lt;=
+[[Back-&gt;hint_4]]
+
+5/10
+
+You can make money by doing &#x27;&#x27;Contracts&#x27;&#x27;. You can see your contracts by clicking on the &#x27;&#x27;Contracts&#x27;&#x27; button in the Play Menu.
+
+[[Next Hint-&gt;hint_6]]</tw-passagedata><tw-passagedata pid="29" name="level_2" tags="" position="1026,530">=&gt;&lt;=
+Congratulations! You are now &#x27;&#x27;LEVEL 2&#x27;&#x27;! You have earned 2 research points for leveling up. You have also unlocked the &#x27;&#x27;Lab&#x27;&#x27;. In the Lab you can unlock different things. (set: $research to $research + 2)(set: $labUnlock to 2)(set: $clvl2 to 2)
+
+[[Back-&gt;Play]]</tw-passagedata><tw-passagedata pid="30" name="Lab" tags="" position="978,1136">=&gt;&lt;=
+[[Back-&gt;Play]]
+
+Welcome to the lab! 
+You have : $research research
+You can research : 
+
+0. $a_research (if: $a_research is &quot;Complete&quot;)[](else:)[[[Research-&gt;researchProto]]]
+0. There will be More Soon!
+
+[[Back-&gt;Play]]</tw-passagedata><tw-passagedata pid="31" name="hint_6" tags="" position="133,1043">=&gt;&lt;=
+[[Back-&gt;hint_5]]
+
+6/10
+
+You can check on how many items you have and how much of which in your &#x27;&#x27;Inventory&#x27;&#x27;. You can navigate to your &#x27;&#x27;Inventory&#x27;&#x27; by clicking on the link in the Play Menu
+
+[[Next Hint-&gt;hint_7]]</tw-passagedata><tw-passagedata pid="32" name="hint_7" tags="" position="133,1195">=&gt;&lt;=
+[[Back-&gt;hint_6]]
+
+7/10
+
+You can buy items at the &#x27;&#x27;Shop&#x27;&#x27;. To buy items, you need money. You can get money by doing contracts. To get to the Shop, click on the &#x27;&#x27;Shop&#x27;&#x27; button in the Play Menu.
+
+[[Next Hint-&gt;hint_8]]</tw-passagedata><tw-passagedata pid="33" name="hint_8" tags="" position="260,1196.6666666666667">=&gt;&lt;=
+[[Back-&gt;hint_7]]
+
+We will add more hints later :)</tw-passagedata><tw-passagedata pid="34" name="researchProto" tags="" position="1146.6666666666667,1140">Sorry, this will be a later feature :(
+
+[[Back-&gt;Lab]]</tw-passagedata></tw-storydata>
 
 <script title="Twine engine code" data-main="harlowe">/**
  * @license almond 0.3.0 Copyright (c) 2011-2014, The Dojo Foundation All Rights Reserved.
