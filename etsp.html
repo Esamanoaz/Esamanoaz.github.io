@@ -10,7 +10,13 @@
 
 <tw-story></tw-story>
 
-<tw-storydata name="Escape" startnode="26" creator="Twine" creator-version="2.0.8" ifid="118F6EFC-8DF0-40F9-A578-E98D1396B63F" format="Harlowe" options=""><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">
+<tw-storydata name="ETSP" startnode="25" creator="Twine" creator-version="2.0.8" ifid="118F6EFC-8DF0-40F9-A578-E98D1396B63F" format="Harlowe" options=""><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">
+
+
+
+
+
+
 
 
 
@@ -56,13 +62,17 @@
 
 
 
-</script><tw-passagedata pid="1" name="Start" tags="" position="1338,300">   You are locked in a room, you are isolated in space, and you are not happy.
+
+
+
+
+
+
+</script><tw-passagedata pid="1" name="Start" tags="" position="1341,305">   You are locked in a room, you are isolated in space, and you are not happy.
         (set: $x to 1) (set: $w to 1) (set: $redcode to 1) (set: $cards to 1)
 [[Examine Your Surroundings-&gt;examine]]
 [[Menu]]
-(if: $pmc &gt; 1)[[[Promo Codes-&gt;pmc list]]]
-
-&amp;copy; Evan Samano 2017</tw-passagedata><tw-passagedata pid="2" name="examine" tags="" position="1193,306">   You look around and see that you are lying on a wooden bed. You are in a small room. There are several windows that show you the outside world. Space. The only exits are a door leaving the room and a vent in the ceiling.
+(if: $pmc &gt; 1)[[[Promo Codes-&gt;promo code list]]]</tw-passagedata><tw-passagedata pid="2" name="examine" tags="" position="1191,305">   You look around and see that you are lying on a wooden bed. You are in a small room. There are several windows that show you the outside world. Space. The only exits are a door leaving the room and a vent in the ceiling.
    
    You can [[Examine The Door-&gt;door]]
    or you can [[Examine The Windows-&gt;window]]
@@ -70,54 +80,54 @@
    and finally, you can also [[Examine The Vent-&gt;vent]] 
    (if: $x &gt; 1)[[[Examine Bed Sheets-&gt;Examine Bed Sheets]]]</tw-passagedata><tw-passagedata pid="3" name="door" tags="" position="1065,305">   You walk over to the door and notice there is a keypad nearby the door. Under further examination, you find that it is a four letter code. The door is made of a material that looks of metal.
    
-   (if: $x &gt; 1)[[[Enter The Code-&gt;entercode]]]
+   [[Enter The Code-&gt;entercode]]
    [[Back-&gt;examine]]</tw-passagedata><tw-passagedata pid="4" name="window" tags="" position="1069,465">   You look at the windows and notice that one of the windows show another room. It looks like the only way to get into the room is a green door. Maybe, if you get into that room in some way, you may be able to escape this void.
    (set: $w to 2)
    [[Back-&gt;examine]]</tw-passagedata><tw-passagedata pid="5" name="bed" tags="" position="1194,465">   You look at the wooden bed and see that it has sheets on it.
     (set: $x to 2)
                        [[Back-&gt;examine]]
-              </tw-passagedata><tw-passagedata pid="6" name="vent" tags="" position="1069,180">   The vent is made of a material that looks of metal. You notice that there is a thick layer of glass over it so you can&#x27;t go through the vent. You do see the word,&quot;VBSCSS,&quot; ingraved on the vent.
-   (set: $redcode to 2)
+              </tw-passagedata><tw-passagedata pid="6" name="vent" tags="" position="1068,180">   The vent is made of a material that looks of metal. You notice that there is a thick layer of glass over it so you can&#x27;t go through the vent. You do see the word,&quot;VBSCSS,&quot; ingraved on the vent.
+
    [[Back-&gt;examine]]</tw-passagedata><tw-passagedata pid="7" name="Examine Bed Sheets" tags="" position="1343,464">   You look at the bed sheets closer, and see some faint text on it,&quot;HBWY&quot;
 
-   [[Back-&gt;examine]]</tw-passagedata><tw-passagedata pid="8" name="Exit The Door" tags="" position="905,299">   You exit the door to see that you are now in a hallway. (if: $w &gt; 1)[You see the door to the room you saw through the window. There is also two other doors.](else:)[You see three different doors, all of them have a diffrent color paint.]
+   [[Back-&gt;examine]]</tw-passagedata><tw-passagedata pid="8" name="Exit The Door" tags="" position="905,298">   You exit the door to see that you are now in a hallway. (if: $w &gt; 1)[You see the door to the room you saw through the window. There is also two other doors.](else:)[You see three different doors, all of them have a diffrent color paint.]
 
    [[correct_door&lt;-Walk Through The Green Door]]
    [[Walk Through The Red Door]]
    [[Walk Through The Blue Door]]
-   [[examine&lt;-Go Back]]</tw-passagedata><tw-passagedata pid="9" name="entercode" tags="" position="904,458">(set: $c to (prompt: &quot;Enter The Code&quot;))
+   [[examine&lt;-Go Back]]</tw-passagedata><tw-passagedata pid="9" name="entercode" tags="" position="903,456">(set: $c to (prompt: &quot;Enter The Code&quot;))
 (if: $c is &quot;HBWY&quot;)[[[Open Door-&gt;Exit The Door]]]
 (else:)[That is not the code
 
-[[Go Back-&gt;examine]]]</tw-passagedata><tw-passagedata pid="10" name="correct_door" tags="" position="751,441">   You enter the green door,(if: $w &gt; 1)[ knowing that it was the control room.](else:)[ knowing that it was the right one from instinct.] You scan for any sight of people, to make sure you won&#x27;t be noticed. Instead, you see that there are aliens! //Aliens are running the prison?//, you think to yourself. Well, it is a prison in space, so, yeah. You look around and you see most of the aliens huddled over a big control panel in the center of the room. You think that might be the one that can get you out of this place.
+[[Go Back-&gt;door]]]</tw-passagedata><tw-passagedata pid="10" name="correct_door" tags="" position="750,440">   You enter the green door,(if: $w &gt; 1)[ knowing that it was the control room.](else:)[ knowing that it was the right one from instinct.] You scan for any sight of people, to make sure you won&#x27;t be noticed. Instead, you see that there are aliens! //Aliens are running the prison?//, you think to yourself. Well, it is a prison in space, so, yeah. You look around and you see most of the aliens huddled over a big control panel in the center of the room. You think that might be the one that can get you out of this place.
    
    To the left there is an alarm system. To the right there is a lone guard. What will you do?
    
    You can [[Leave-&gt;Exit The Door]]
    or you can [[Go to the Alarm System-&gt;Distract]]
-   or [[Follow The Guard]]</tw-passagedata><tw-passagedata pid="11" name="Walk Through The Red Door" tags="" position="746,295">   You walk up to the red door and try the handle. It&#x27;s locked. This door also has a code. This Door&#x27;s code though is six letters long.
+   or [[Follow The Guard]]</tw-passagedata><tw-passagedata pid="11" name="Walk Through The Red Door" tags="" position="745,295">   You walk up to the red door and try the handle. It&#x27;s locked. This door also has a code. This Door&#x27;s code though is six letters long.
    
 [[Go Back-&gt;Exit The Door]]
 [[Walk Through The Blue Door]]
 [[Walk Through The Green Door-&gt;correct_door]]
-(if: $redcode &gt; 1)[[[Enter The Code-&gt;red code]]]
-(if: $RDEC &gt; 1)[[[Force Door Open-&gt;force_door_open_r]]]</tw-passagedata><tw-passagedata pid="12" name="Walk Through The Blue Door" tags="" position="754,157">   You walk through the blue door and you realise that it was a trap! Aliens quickly surround you and you are taken back to your room. The code is changed, and they remove all signs or clues of ways to escape. You spend the rest of your life in a space prison, even though you were framed and no one believed you.
+[[Enter The Code-&gt;red code]]
+(if: $RDEC &gt; 1)[[[Force Door Open-&gt;force_door_open_r]]]</tw-passagedata><tw-passagedata pid="12" name="Walk Through The Blue Door" tags="" position="753,156">   You walk through the blue door and you realise that it was a trap! Aliens quickly surround you and you are taken back to your room. The code is changed, and they remove all signs or clues of ways to escape. You spend the rest of your life in a space prison, even though you were framed and no one believed you.
    
    [[Continue-&gt;ending A]]</tw-passagedata><tw-passagedata pid="13" name="ending A" tags="" position="616,160">
              =&gt;&lt;=
-             Sorry, but you are &#x27;&#x27;DEAD&#x27;&#x27;</tw-passagedata><tw-passagedata pid="14" name="red code" tags="" position="500,292">(set: $redcode to (prompt: &quot;Enter The Code&quot;))
+             Sorry, but you are &#x27;&#x27;DEAD&#x27;&#x27;</tw-passagedata><tw-passagedata pid="14" name="red code" tags="" position="500,290">(set: $redcode to (prompt: &quot;Enter The Code&quot;))
 (if: $redcode is &quot;VBSCSS&quot;)[[[Open Door-&gt;red continue]]]
 (else:)[That is not the code
 
-[[Go Back-&gt;Exit The Door]]]</tw-passagedata><tw-passagedata pid="15" name="red continue" tags="" position="371,294">   You walk into the red room. Your jaw drops as you see someone. That someone is very familiar, very. That someone, is &#x27;&#x27;YOU&#x27;&#x27;! Hundreds of cameras around the room show you, at different ages, solving different puzzles, or the same puzzle in a different scenario. You turn around and see a camera of you in that room getting taken away by aliens. You look  at the door and it bursts open and the aliens come in and usher you out of the room and lock you back into your old cell. They change the lock so you can&#x27;t escape.
+[[Go Back-&gt;Exit The Door]]]</tw-passagedata><tw-passagedata pid="15" name="red continue" tags="" position="366,291">   You walk into the red room. Your jaw drops as you see someone. That someone is very familiar, very. That someone, is &#x27;&#x27;YOU&#x27;&#x27;! Hundreds of cameras around the room show you, at different ages, solving different puzzles, or the same puzzle in a different scenario. You turn around and see a camera of you in that room getting taken away by aliens. You look  at the door and it bursts open and the aliens come in and usher you out of the room and lock you back into your old cell. They change the lock so you can&#x27;t escape.
    
    You don&#x27;t care about escaping anymore though, because now you know, you are not real. You are just a clone....
    
-   [[Continue-&gt;special end]]</tw-passagedata><tw-passagedata pid="16" name="Dev Cheat" tags="" position="904,96">(set: $x to 2)(set: $w to 2)(set: $redcode to 2)(set: $RDEC to 2)
+   [[Continue-&gt;special end]]</tw-passagedata><tw-passagedata pid="16" name="Dev Cheat" tags="" position="906,96">(set: $x to 2)(set: $w to 2)(set: $RDEC to 2)
 
-[[Continue With Your New Stats!-&gt;Exit The Door]]</tw-passagedata><tw-passagedata pid="17" name="Distract" tags="" position="548,432">   You crawl over to the alarm system. (if: $cards &gt; 1)[You swipe the card and the alarms activate in the next room. They run away, not noticing you as the run by.](else:)[It seems you need a keycard to use it.]
+[[Continue With Your New Stats!-&gt;Exit The Door]]</tw-passagedata><tw-passagedata pid="17" name="Distract" tags="" position="546,431">   You crawl over to the alarm system. (if: $cards &gt; 1)[You swipe the card and the alarms activate in the next room. They run away, not noticing you as the run by.](else:)[It seems you need a keycard to use it.]
    
-   (if: $cards &gt; 1)[[[Use The Control Panel-&gt;[Use The Control Panel]]]
+   (if: $cards &gt; 1)[[[Use The Control Panel-&gt;Use The Control Panel]]]
    (else:)[[[Go Back-&gt;correct_door]]]</tw-passagedata><tw-passagedata pid="18" name="Follow The Guard" tags="" position="752,579">   You slowly creep up to the guard. You finally see what he is guarding. It looks like a glass box, with keycards in it. Maybe they will help.
    
    [[Attack The Guard]]
@@ -128,7 +138,7 @@
    
    [[ending A&lt;-Continue]]</tw-passagedata><tw-passagedata pid="21" name="examine b" tags="" position="877,702">   You examine the glass box. It looks breakable, but your not sure. The Guard looks ready to defend himself.
    
-   [[Back-&gt;Follow The Guard]]</tw-passagedata><tw-passagedata pid="22" name="[Use The Control Panel" tags="" position="385,603">=&gt;&lt;=
+   [[Back-&gt;Follow The Guard]]</tw-passagedata><tw-passagedata pid="22" name="Use The Control Panel" tags="" position="378,540">=&gt;&lt;=
    You walk to the center of the room, where the main control panel is. You get a quick rush of excitment as you look over at it. You examine it and learn how to use it quickly. You launch the escape pods and are off to earth! Or what is left of it....
    
    =&gt;&lt;=
@@ -138,84 +148,95 @@
   
   &#x27;&#x27;THE END&#x27;&#x27;
   
-  [[Continue-&gt;thnx]]</tw-passagedata><tw-passagedata pid="23" name="Dev Cheat 2" tags="" position="376,434">(set: $x to 2)(set: $w to 2)(set: $redcode to 2)(set: $cards to 2)
-
-[[Continue With Your New Stats!-&gt;Distract]]</tw-passagedata><tw-passagedata pid="24" name="special end" tags="" position="232,288">   
+  [[Continue-&gt;thnx]]</tw-passagedata><tw-passagedata pid="23" name="special end" tags="" position="232,288">   
    =&gt;&lt;=
    Congratulations! You got the special ending!
    
    [[Continue-&gt;thnx]]
-   [[Get An Expansion-&gt;EC1]]</tw-passagedata><tw-passagedata pid="25" name="thnx" tags="" position="231,683">=&gt;&lt;=
+   [[Get An Expansion-&gt;EC1]]</tw-passagedata><tw-passagedata pid="24" name="thnx" tags="" position="228,680">=&gt;&lt;=
 Thanks for playing!
 :D
 
 Now try to get the other endings!
 
 [[Restart-&gt;Start]]
-[[Menu]]</tw-passagedata><tw-passagedata pid="26" name="Menu" tags="" position="1760,286">   =&gt;&lt;=
+[[Menu]]
+</tw-passagedata><tw-passagedata pid="25" name="Menu" tags="" position="1601,286">   =&gt;&lt;=
    Welcome To Escape The Space Prison!
    
    [[Play-&gt;Start]]
    [[Info]]
-   [[Expansions-&gt;promo codes]]</tw-passagedata><tw-passagedata pid="27" name="Info" tags="" position="1761,430">   =&gt;&lt;=
+   [[Expansions-&gt;promo codes]]
+   
+   &amp;copy; Evan Samano 2017</tw-passagedata><tw-passagedata pid="26" name="Info" tags="" position="1606,440">   =&gt;&lt;=
    A game made by Evan Samano, using Twine 2.
    
-   Version 1.3
+   Version 1.3.1
    
    [[Change Log]]
-   [[Back-&gt;Menu]]</tw-passagedata><tw-passagedata pid="28" name="promo codes" tags="" position="1901,289">=&gt;&lt;=
+   [[Back-&gt;Menu]]
+</tw-passagedata><tw-passagedata pid="27" name="promo codes" tags="" position="1750,295">=&gt;&lt;=
 (set: $check to(prompt: &quot;Enter a code&quot;))
 (if: $check is &quot;Promo Code&quot;)[That was a code!(set: $pmc to 2)]
 (else-if: $check is &quot;RDEC&quot;)[(set: $RDEC to 2)That was a code!]
-(else-if: $check is &quot;hi&quot;)[This is a test]
 (else:)[That isn&#x27;t a code.]
-[[Back-&gt;Menu]]</tw-passagedata><tw-passagedata pid="29" name="Change Log" tags="" position="1760,555">[[Back-&gt;Info]]
+[[Back-&gt;Menu]]</tw-passagedata><tw-passagedata pid="28" name="Change Log" tags="" position="1605,581.6666666666667">[[Back-&gt;Info]]
+
+Version 1.3.1
+---
+~Changed Change Log Format
+~Tweaked Expansion List
+~Tweaked Door Codes
+	(You do not have to find the codes first)
+---
+
 
 Version 1.3
-
 ---
-
 +Force Door Expansion
 -White Space
+---
+
 
 Version 1.2.1
-
+---
+~Fixed Expansions
++Expansion List
+	(only reachable with a code)
 ---
 
-Fixed Expansions
-+Expansion List
-  (only reachable with a code)
 
 Version 1.2
-
 ---
-
-Bug Fixes
+~Bug Fixes
 +Menu
   +Info
   +Expansions
   +Change Log
+---
+
 
 Version 1.1
 ---
+~Grammar Fixes
 
-Grammar Fixes</tw-passagedata><tw-passagedata pid="30" name="pmc list" tags="" position="1332,148">=&gt;&lt;=
+[[Back-&gt;Info]]</tw-passagedata><tw-passagedata pid="29" name="promo code list" tags="" position="1330,145">=&gt;&lt;=
 [[Back-&gt;Start]]
 
 This is a list of avaible expansions!
 
 
 0. Expansion List (Promo Code)
-0. Force Door (???)</tw-passagedata><tw-passagedata pid="31" name="EC1" tags="" position="80,288">=&gt;&lt;=
+0. Force Door ((if: $RDEC is 2)[RDEC](else:)[???])</tw-passagedata><tw-passagedata pid="30" name="EC1" tags="" position="80,285">=&gt;&lt;=
 The expansion code is RDEC. Hope you have a fun time! :D
 
-[[Back-&gt;thnx]]</tw-passagedata><tw-passagedata pid="32" name="force_door_open_r" tags="" position="480,161">   You force the door open with a near by crowbar. Weird that you missed it, huh? Anyway, you open the door and walk in. Aliens all turn around and stare at you. You stop in your tracks. //What? Aliens?, you think to yourself.// What will you do?
+[[Back-&gt;thnx]]</tw-passagedata><tw-passagedata pid="31" name="force_door_open_r" tags="" position="480,158">   You force the door open with a near by crowbar. Weird that you missed it, huh? Anyway, you open the door and walk in. Aliens all turn around and stare at you. You stop in your tracks. //What? Aliens?, you think to yourself.// What will you do?
    
    You can [[Examine The Room-&gt;examine c]]
    or you can [[Keep on walking]]
-   or [[walk out of the room-&gt;Walk Through The Red Door]]</tw-passagedata><tw-passagedata pid="33" name="examine c" tags="" position="354,161">   You look around and see that everyone is at a desk. They are not attacking you. They all turn around and go back to work.
+   or [[walk out of the room-&gt;Walk Through The Red Door]]</tw-passagedata><tw-passagedata pid="32" name="examine c" tags="" position="354,161">   You look around and see that everyone is at a desk. They are not attacking you. They all turn around and go back to work.
    
-   [[Back-&gt;force_door_open_r]]</tw-passagedata><tw-passagedata pid="34" name="Keep on walking" tags="" position="350,31">   You walk to a desk and sit down. No one seems to mind and you look at the computer in front of you. It has a video loading on it. Once it is loaded you watch it. It welcomes you to work and tells you to look at the mirror to your right. You look over. It is there and is turned around.
+   [[Back-&gt;force_door_open_r]]</tw-passagedata><tw-passagedata pid="33" name="Keep on walking" tags="" position="350,31">   You walk to a desk and sit down. No one seems to mind and you look at the computer in front of you. It has a video loading on it. Once it is loaded you watch it. It welcomes you to work and tells you to look at the mirror to your right. You look over. It is there and is turned around.
    
    //When did that show up,// you think to yourself.You turn it around, and it reveals your true identity, an alien! You hit your desk and scream. Everyone in the room comes over to you and pats you on the back. They tell you,&quot;We&#x27;re sorry this had to happen to you, too.&quot;
    
