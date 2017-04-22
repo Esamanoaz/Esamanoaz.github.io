@@ -26,6 +26,9 @@
 
 
 
+
+
+
 </style><script role="script" id="twine-user-script" type="text/twine-javascript">
 
 
@@ -42,15 +45,21 @@
 
 
 
+
+
+
 </script><tw-passagedata pid="1" name="startMenu" tags="" position="0,0">&lt;div style=&quot;text-align : center;&quot;&gt;
-Welcome to **Fossil Fuels Adventure**
+Welcome to **Fossil Fuels Clicker**
 In this game, you will learn about a current energy source, **fossil fuel**.
-[[Play-&gt;load]]
+[[Play-&gt;loadVars]]
+[[Load Save-&gt;loadGame]]
 [[Fossil Fuel Information-&gt;info]]
+[[What&#x27;s new?-&gt;WN]]
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="2" name="gameStart" tags="" position="606,5">&lt;p style=&quot;text-align:center;&quot;&gt;Where would you like to go?&lt;/p&gt;
 
 The [[Town Hall]], where a current debate is going on,
-or (if: $jobInterview is &quot;notComplete&quot;)[your Very //Important// [[Job Interview]]](elseif: $jobInterview is &quot;complete&quot;)[your [[Business]]]</tw-passagedata><tw-passagedata pid="3" name="info" tags="" position="8,153">&lt;p style=&quot;text-align : center;&quot;&gt;Information About Fossil Fuels&lt;/p&gt;
+or (if: $jobInterview is &quot;notComplete&quot;)[your Very //Important// [[Job Interview]]](elseif: $jobInterview is &quot;complete&quot;)[your [[Business]]]
+(else: )[your Very //Important// [[Job Interview]]]</tw-passagedata><tw-passagedata pid="3" name="info" tags="" position="2,154">&lt;p style=&quot;text-align : center;&quot;&gt;Information About Fossil Fuels&lt;/p&gt;
 ---
 
 * &lt;b&gt;Fossil Fuels&lt;/b&gt;
@@ -88,7 +97,7 @@ or (if: $jobInterview is &quot;notComplete&quot;)[your Very //Important// [[Job 
 
 	&quot;They&#x27;re arguing whether we should use more renewable energy sources,&quot; she said. &quot;The current resource is Fossil Fuels, but they are non-renewable. Well- they kind of are, but they take millions of years to form again. Coal starts off as peat, and then over time with pressure becomes lignite, then coal.&quot;
     
-    &quot;They&#x27;re also arguing about the enviromental impacts,&quot; a young man chimes in. &quot;The coal is combusted to create steam. The steam is used to generate elitrical energy. By combusting the coal, it releases carbondioxide and impurities though&quot;.
+    &quot;They&#x27;re also arguing about the enviromental impacts,&quot; a young man chimes in. &quot;The coal is combusted to create steam. The steam is used to generate eletrical energy. By combusting the coal, it releases carbondioxide and impurities though&quot;.
     
     &quot;Coal is a plentiful resource, and it is easy to get. Oil can also be mined in the form of oil shales and oil sands. Liquid oil is pumped out of the ground and into large tankers to be stored. They can be transported in these tankers, too. Coal can be shipped in shipping terminals as well. Oil has impurities and releases carbondioxide, but it is cleaner than coal.&quot;
     
@@ -97,27 +106,27 @@ or (if: $jobInterview is &quot;notComplete&quot;)[your Very //Important// [[Job 
     [[Fossil Fuels are fine-&gt;fine]]
     [[Fossil Fuels are polluting our enviroment-&gt;pollution]]</tw-passagedata><tw-passagedata pid="5" name="Job Interview" tags="" position="605,205">	You take a bus to your job interview. While you are on the bus, you wonder if you know enough about your job. Maybe someone in [[Town Hall]] can tell you more about fossil fuels.
     
-(if: $townHall is 5)[[[Go to job interview-&gt;job]]]</tw-passagedata><tw-passagedata pid="6" name="Mine" tags="" position="1110,510">=&gt;&lt;=
+(if: $townHall is 5)[[[Go to job interview-&gt;job]]]</tw-passagedata><tw-passagedata pid="6" name="Mine" tags="" position="1510,710">=&gt;&lt;=
 Money : [$money]&lt;replaceA|
 Coal : [$coal]&lt;replaceB|
 Miners : [$miners]&lt;replaceC|
 
 {(live: 0.1s)[Sell 1 ton of Coal (click: &quot;Sell&quot;)[(if: $coal &gt; 1999)[(set: $coal to $coal - 2000) (set: $money to $money + 43) (replace: ?replaceB)[$coal] (replace: ?replaceA)[$money] ] (else: )[] ] ]}
 
-{(live: 0.1s)[(set: $num to(random: 1,2)) Mine Coal (click: &quot;Mine Coal&quot;)[ (set: $coal to $coal + $num)] ]}
+{(live: 0.1s)[(set: $num to(random: 1,3)) Mine Coal (click: &quot;Mine Coal&quot;)[ (set: $coal to $coal + $num)] ]}
 
 {(live: 1s)[(set: $coal to $coal + $miners) (replace: ?replaceB)[$coal] (replace: ?replaceC)[$miners]]}
 
-{(live: 1s)[(set: $oil to $oil + $wells)]}
+{(live: 3s)[(set: $oil to $oil + $wells)]}
 
-[[Back-&gt;Business]]</tw-passagedata><tw-passagedata pid="7" name="Resources" tags="" position="8,303">https://www.youtube.com/watch?v=0rt9d_0nlwI
+[[Back-&gt;Business]]</tw-passagedata><tw-passagedata pid="7" name="Resources" tags="" position="2,303">https://www.youtube.com/watch?v=0rt9d_0nlwI
 https://www.sciencedaily.com/terms/fossil_fuel.htm
 http://amso.net/about-oil-shale/oil-shale-extraction-methods
 www.wou.edu/.../Transportation%20and%20storage%20of%20fossil%20fuels.doc
 
 &lt;p style=&quot;text-align:center;&quot;&gt;[[Back-&gt;info]]&lt;/p&gt;</tw-passagedata><tw-passagedata pid="8" name="fine" tags="" position="208,308">	&quot;Yeah that&#x27;s how I see it to,&quot; the woman said. &quot;Fossil Fuels already power everything in this town. Schools, stores, and even this building right now. Why change it?&quot;
 (set: $opinion to &quot;support fossil fuels&quot;)
-&lt;p style=&quot;text-align:center;&quot;&gt;[[Exit Town Hall-&gt;gameStart]]&lt;/p&gt;</tw-passagedata><tw-passagedata pid="9" name="pollution" tags="" position="410,305">	&quot;Yeah, that&#x27;s what i think to,&quot; said the woman. &quot;//Everthing// in this town runs on fossil fuels. Schools, stores, and even this building. Would it hurt to use just a little renewable energy, or something that won&#x27;t pollute?&quot;
+&lt;p style=&quot;text-align:center;&quot;&gt;[[Exit Town Hall-&gt;gameStart]]&lt;/p&gt;</tw-passagedata><tw-passagedata pid="9" name="pollution" tags="" position="410,305">	&quot;Yeah, that&#x27;s what i think, too,&quot; said the woman. &quot;//Everthing// in this town runs on fossil fuels. Schools, stores, and even this building. Would it hurt to use just a little renewable energy, or something that won&#x27;t pollute?&quot;
 (set: $opinion to &quot;don&#x27;t support fossil fuels&quot;)
     &lt;p style=&quot;text-align:center;&quot;&gt;[[Exit Town Hall-&gt;gameStart]]&lt;/p&gt;</tw-passagedata><tw-passagedata pid="10" name="job" tags="" position="605,355">    When you arrive, you enter the manager&#x27;s office. You give the manager your resume.
     
@@ -138,12 +147,11 @@ www.wou.edu/.../Transportation%20and%20storage%20of%20fossil%20fuels.doc
 	//Well that went great.// An idea occurs to you. What if you start your own business in fossil fuels?
 	
 	[[Continue-&gt;gameStart]]
-	(set: $jobInterview to &quot;complete&quot;)</tw-passagedata><tw-passagedata pid="13" name="load" tags="" position="300,5">(set: $jobInterview to &quot;notComplete&quot;) (set: $money to 500) (set: $coal to 0) (set: $miners to 0) (set: $oil to 0) (set: $wells to 1)
+	(set: $jobInterview to &quot;complete&quot;)</tw-passagedata><tw-passagedata pid="13" name="loadVars" tags="" position="300,0">(set: $jobInterview to &quot;notComplete&quot;) (set: $money to 500) (set: $coal to 0) (set: $miners to 0) (set: $oil to 0) (set: $wells to 1) (set: $helper to &quot;no&quot;)
 
-Loaded all variables.
-[[Continue-&gt;gameStart]] </tw-passagedata><tw-passagedata pid="14" name="TEST" tags="" position="910,101">{(set: $jobInterview to &quot;notComplete&quot;) (set: $money to 500) (set: $coal to 0) (set: $miners to 0) (set: $oil to 0) (set: $wells to 1)}
+(go-to: &quot;gameStart&quot;)</tw-passagedata><tw-passagedata pid="14" name="TEST" tags="" position="1113.3333333333335,605">(set: $jobInterview to &quot;notComplete&quot;) (set: $money to 500) (set: $coal to 0) (set: $miners to 0) (set: $oil to 0) (set: $wells to 1) (set: $helper to &quot;no&quot;)
 
-[[GO-&gt;Business]] </tw-passagedata><tw-passagedata pid="15" name="Store" tags="" position="1110,308">=&gt;&lt;=
+[[GO-&gt;Business]] </tw-passagedata><tw-passagedata pid="15" name="Store" tags="" position="1510,505">=&gt;&lt;=
 [[Back-&gt;Business]]
 
 Our current items are
@@ -155,10 +163,12 @@ Our current items are
 
 We also have some workers for hire
 ---
-* Hire a Miner for $100 (live: 1s)[(click: &quot;Hire&quot;)[(if: $money &gt; 99)[(set: $miners to $miners + 1) (set: $money to $money - 100)] (else: )[] ]]
+* Hire a Miner for $100 (live: 1s)[(click: &quot;Hire a Miner&quot;)[(if: $money &gt; 99)[(set: $miners to $miners + 1) (set: $money to $money - 100)] (else: )[] ]]
+* Hire a Helper for $10 (live: 1s)[(click: &quot;Hire a Helper&quot;)[(if: $money &gt; 9)[(set: $helper to &quot;yes&quot;) (set: $money to $money - 10)] (else: )[] ]]
 
 [[Back-&gt;Business]]
-</tw-passagedata><tw-passagedata pid="16" name="Business" tags="" position="910,308">=&gt;&lt;=
+</tw-passagedata><tw-passagedata pid="16" name="Business" tags="" position="1308.3333333333335,508.33333333333337">=&gt;&lt;=
+{(if: $helper is &quot;yes&quot;)[Talk to your [[Helper]]] (else: )[]}
 Check on the [[Mine]]
 Check on the [[Deepwater Wells]]
 Go to the [[Store]]
@@ -167,22 +177,75 @@ Money : [$money]&lt;replaceA|
 Coal : [$coal]&lt;replaceB|
 Oil : [$oil]&lt;replaceD|
 
-
+{(link:&quot;Save game&quot;)[
+  (if:(save-game:&quot;Slot A&quot;))[
+    Game saved!
+  ](else: )[
+    Sorry, I couldn&#x27;t save your game.
+  ]
+]}
 
 {(live: 1s)[ (set: $coal to $coal + $miners) (replace: ?replaceB)[$coal] ]}
 
-{(live: 1s)[(set: $oil to $oil + $wells) (replace: ?replaceD)[$oil] ]}</tw-passagedata><tw-passagedata pid="17" name="Deepwater Wells" tags="" position="911,510">=&gt;&lt;=
+{(live: 3s)[(set: $oil to $oil + $wells) (replace: ?replaceD)[$oil] ]}</tw-passagedata><tw-passagedata pid="17" name="Deepwater Wells" tags="" position="1310,703.3333333333334">=&gt;&lt;=
 Money : [$money]&lt;replaceA|
 Oil : [$oil]&lt;replaceD|
 Deepwater Wells : [$wells]&lt;replaceE|
 
 {(live: 0.1s)[Sell all Oil (click: &quot;Sell&quot;)[(set: $money to $money + (4 * $oil)) (replace: ?replaceD)[$oil] (replace: ?replaceA)[$money] (set: $oil to 0) ]]}
 
-{(live: 2s)[(set: $oil to $oil + $wells) (replace: ?replaceD)[$oil] (replace: ?replaceE)[$wells]]}
+{(live: 3s)[(set: $oil to $oil + $wells) (replace: ?replaceD)[$oil] (replace: ?replaceE)[$wells]]}
 
 {(live: 1s)[(set: $coal to $coal + $miners) ]}
 
-[[Back-&gt;Business]]</tw-passagedata></tw-storydata>
+[[Back-&gt;Business]]</tw-passagedata><tw-passagedata pid="18" name="loadGame" tags="" position="155,152">(load-game: &quot;Slot A&quot;)</tw-passagedata><tw-passagedata pid="19" name="WN" tags="" position="6.666666666666667,460">[[Back-&gt;startMenu]]
+
+1.1
+---
+* You can save and load your game
+** Saving does not save your resources (oil, coal)
+* Fixed resource bug (you can&#x27;t generate more oil by being in the business passage anymore)
+* Added a Helper in store
+* Added tips passage
+* Increased the ammount of coal you can get from manualy mining from 1-2 to 1-3
+
+[[Back-&gt;startMenu]]</tw-passagedata><tw-passagedata pid="20" name="Helper" tags="" position="1310,106.66666666666667">[[Back-&gt;Business]]
+
+1/6
+
+This is where you can get tips from your helper.
+
+[[Continue-&gt;tip2]]</tw-passagedata><tw-passagedata pid="21" name="tip2" tags="" position="1510,105">[[Back-&gt;Helper]]
+
+2/6
+
+Miners will give you 1 coal every second, even if your not mining coal manualy.
+
+[[Continue-&gt;tip3]]</tw-passagedata><tw-passagedata pid="22" name="tip3" tags="" position="1703.3333333333335,103.33333333333334">[[Back-&gt;tip2]]
+
+3/6
+
+Deepwater Wells give you 1 oil every 3 seconds. You start with 1 Deepwater Well at the beginning of the game.
+
+[[Continue-&gt;tip4]]</tw-passagedata><tw-passagedata pid="23" name="tip4" tags="" position="1908.3333333333335,103.33333333333334">[[Back-&gt;tip3]]
+
+4/6
+
+The potato chips do nothing.
+
+[[Continue-&gt;tip5]]</tw-passagedata><tw-passagedata pid="24" name="tip5" tags="" position="1910,310">[[Back-&gt;tip4]]
+
+5/6
+
+When you mine coal manualy, you get 1 to 3 randomly.
+
+[[Continue-&gt;tip6]]</tw-passagedata><tw-passagedata pid="25" name="tip6" tags="" position="1710,310">[[Back-&gt;tip5]]
+
+6/6
+
+Money
+---
+1 gallon of oil sells for $4, while 1 ton of coal sells for $43. Coal is **cheap**. You also don&#x27;t make any oil or coal while at the store or in the tips menu.</tw-passagedata></tw-storydata>
 
 <script title="Twine engine code" data-main="harlowe">/**
  * @license almond 0.3.0 Copyright (c) 2011-2014, The Dojo Foundation All Rights Reserved.
