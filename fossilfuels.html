@@ -29,7 +29,11 @@
 
 
 
+
+
 </style><script role="script" id="twine-user-script" type="text/twine-javascript">
+
+
 
 
 
@@ -111,7 +115,7 @@ Money : [$money]&lt;replaceA|
 Coal : [$coal]&lt;replaceB|
 Miners : [$miners]&lt;replaceC|
 
-{(live: 0.1s)[Sell 1 ton of Coal (click: &quot;Sell&quot;)[(if: $coal &gt; 1999)[(set: $coal to $coal - 2000) (set: $money to $money + 43) (replace: ?replaceB)[$coal] (replace: ?replaceA)[$money] ] (else: )[] ] ]}
+{(live: 1s)[Sell 1 ton of Coal (click: &quot;Sell&quot;)[(if: $coal &gt; 1999)[(set: $coal to $coal - 2000) (set: $money to $money + 43) (replace: ?replaceB)[$coal] (replace: ?replaceA)[$money] ] (else: )[] ] ]}
 
 {(live: 0.1s)[(set: $num to(random: 1,3)) Mine Coal (click: &quot;Mine Coal&quot;)[ (set: $coal to $coal + $num)] ]}
 
@@ -147,9 +151,13 @@ www.wou.edu/.../Transportation%20and%20storage%20of%20fossil%20fuels.doc
 	//Well that went great.// An idea occurs to you. What if you start your own business in fossil fuels?
 	
 	[[Continue-&gt;gameStart]]
-	(set: $jobInterview to &quot;complete&quot;)</tw-passagedata><tw-passagedata pid="13" name="loadVars" tags="" position="300,0">(set: $jobInterview to &quot;notComplete&quot;) (set: $money to 500) (set: $coal to 0) (set: $miners to 0) (set: $oil to 0) (set: $wells to 1) (set: $helper to &quot;no&quot;)
+	(set: $jobInterview to &quot;complete&quot;)</tw-passagedata><tw-passagedata pid="13" name="loadVars" tags="" position="300,0">(set: $jobInterview to &quot;notComplete&quot;) (set: $money to 500) (set: $coal to 0) (set: $miners to 0) (set: $oil to 0) (set: $wells to 1) (set: $helper to &quot;no&quot;) 
 
-(go-to: &quot;gameStart&quot;)</tw-passagedata><tw-passagedata pid="14" name="TEST" tags="" position="1113.3333333333335,605">(set: $jobInterview to &quot;notComplete&quot;) (set: $money to 500) (set: $coal to 0) (set: $miners to 0) (set: $oil to 0) (set: $wells to 1) (set: $helper to &quot;no&quot;)
+(set: $wellCost to 1000) (set: $minerCost to 100)
+
+(go-to: &quot;gameStart&quot;)</tw-passagedata><tw-passagedata pid="14" name="TEST" tags="" position="1113,605">(set: $jobInterview to &quot;notComplete&quot;) (set: $money to 500000) (set: $coal to 0) (set: $miners to 0) (set: $oil to 0) (set: $wells to 1) (set: $helper to &quot;no&quot;) 
+
+(set: $wellCost to 1000) (set: $minerCost to 100)
 
 [[GO-&gt;Business]] </tw-passagedata><tw-passagedata pid="15" name="Store" tags="" position="1510,505">=&gt;&lt;=
 [[Back-&gt;Business]]
@@ -157,17 +165,16 @@ www.wou.edu/.../Transportation%20and%20storage%20of%20fossil%20fuels.doc
 Our current items are
 ---
 * Potato Chips for $5 (live: 1s)[(click: &quot;Potato Chips&quot;)[(set: $money to $money - 5)]]
-* Deepwater Well for $1000 (live: 1s)[(click: &quot;Deepwater Well&quot;)[(if: $money &gt; 999)[(set: $wells to $wells + 1) (set: $money to $money - 1000)] (else: )[] ]]
+* Deepwater Well for $[$wellCost]&lt;well| (live: 1s)[(click: &quot;Deepwater Well&quot;)[(if: $money &gt; ($wellCost - 1))[(set: $wells to $wells + 1) (set: $money to $money - $wellCost) (set: $wellCost to $wellCost + (round: $wellCost * 0.1)) (replace: ?well)[$wellCost]] (else: )[] ]]
 
 
 
 We also have some workers for hire
 ---
-* Hire a Miner for $100 (live: 1s)[(click: &quot;Hire a Miner&quot;)[(if: $money &gt; 99)[(set: $miners to $miners + 1) (set: $money to $money - 100)] (else: )[] ]]
+* Hire a Miner for $[$minerCost]&lt;miner| (live: 1s)[(click: &quot;Hire a Miner&quot;)[(if: $money &gt; ($minerCost - 1))[(set: $miners to $miners + 1) (set: $money to $money - $minerCost) (set: $minerCost to $minerCost + (round: $minerCost * 0.1)) (replace: ?miner)[$minerCost]] (else: )[] ]]
 * Hire a Helper for $10 (live: 1s)[(click: &quot;Hire a Helper&quot;)[(if: $money &gt; 9)[(set: $helper to &quot;yes&quot;) (set: $money to $money - 10)] (else: )[] ]]
 
-[[Back-&gt;Business]]
-</tw-passagedata><tw-passagedata pid="16" name="Business" tags="" position="1308.3333333333335,508.33333333333337">=&gt;&lt;=
+[[Back-&gt;Business]]</tw-passagedata><tw-passagedata pid="16" name="Business" tags="" position="1308,508">=&gt;&lt;=
 {(if: $helper is &quot;yes&quot;)[Talk to your [[Helper]]] (else: )[]}
 Check on the [[Mine]]
 Check on the [[Deepwater Wells]]
@@ -187,65 +194,84 @@ Oil : [$oil]&lt;replaceD|
 
 {(live: 1s)[ (set: $coal to $coal + $miners) (replace: ?replaceB)[$coal] ]}
 
-{(live: 3s)[(set: $oil to $oil + $wells) (replace: ?replaceD)[$oil] ]}</tw-passagedata><tw-passagedata pid="17" name="Deepwater Wells" tags="" position="1310,703.3333333333334">=&gt;&lt;=
+{(live: 3s)[(set: $oil to $oil + $wells) (replace: ?replaceD)[$oil] ]}</tw-passagedata><tw-passagedata pid="17" name="Deepwater Wells" tags="" position="1310,703">=&gt;&lt;=
 Money : [$money]&lt;replaceA|
 Oil : [$oil]&lt;replaceD|
 Deepwater Wells : [$wells]&lt;replaceE|
 
-{(live: 0.1s)[Sell all Oil (click: &quot;Sell&quot;)[(set: $money to $money + (4 * $oil)) (replace: ?replaceD)[$oil] (replace: ?replaceA)[$money] (set: $oil to 0) ]]}
+{(live: 1s)[Sell all Oil (click: &quot;Sell&quot;)[(set: $money to $money + (4 * $oil)) (replace: ?replaceD)[$oil] (replace: ?replaceA)[$money] (set: $oil to 0) ]]}
 
 {(live: 3s)[(set: $oil to $oil + $wells) (replace: ?replaceD)[$oil] (replace: ?replaceE)[$wells]]}
 
 {(live: 1s)[(set: $coal to $coal + $miners) ]}
 
-[[Back-&gt;Business]]</tw-passagedata><tw-passagedata pid="18" name="loadGame" tags="" position="155,152">(load-game: &quot;Slot A&quot;)</tw-passagedata><tw-passagedata pid="19" name="WN" tags="" position="6.666666666666667,460">[[Back-&gt;startMenu]]
+[[Back-&gt;Business]]</tw-passagedata><tw-passagedata pid="18" name="loadGame" tags="" position="155,152">(load-game: &quot;Slot A&quot;)</tw-passagedata><tw-passagedata pid="19" name="WN" tags="" position="6,460">[[Back-&gt;startMenu]]
+
+1.1.1
+---
+* Grammar Fixes
+* Reduced sell time from 0.1s to 1s
+** Helps screen not to freeze up
+* Added 10% Inflation to important items
+* Note : The Opera Browser will potentially delete your save
+** Sorry :(
+---
 
 1.1
 ---
 * You can save and load your game
-** Saving does not save your resources (oil, coal)
 * Fixed resource bug (you can&#x27;t generate more oil by being in the business passage anymore)
 * Added a Helper in store
 * Added tips passage
 * Increased the ammount of coal you can get from manualy mining from 1-2 to 1-3
 
-[[Back-&gt;startMenu]]</tw-passagedata><tw-passagedata pid="20" name="Helper" tags="" position="1310,106.66666666666667">[[Back-&gt;Business]]
+[[Back-&gt;startMenu]]</tw-passagedata><tw-passagedata pid="20" name="Helper" tags="" position="1310,106">[[Back-&gt;Business]]
 
-1/6
+1/8
 
 This is where you can get tips from your helper.
 
 [[Continue-&gt;tip2]]</tw-passagedata><tw-passagedata pid="21" name="tip2" tags="" position="1510,105">[[Back-&gt;Helper]]
 
-2/6
+2/8
 
 Miners will give you 1 coal every second, even if your not mining coal manualy.
 
-[[Continue-&gt;tip3]]</tw-passagedata><tw-passagedata pid="22" name="tip3" tags="" position="1703.3333333333335,103.33333333333334">[[Back-&gt;tip2]]
+[[Continue-&gt;tip3]]</tw-passagedata><tw-passagedata pid="22" name="tip3" tags="" position="1703,103">[[Back-&gt;tip2]]
 
-3/6
+3/8
 
 Deepwater Wells give you 1 oil every 3 seconds. You start with 1 Deepwater Well at the beginning of the game.
 
-[[Continue-&gt;tip4]]</tw-passagedata><tw-passagedata pid="23" name="tip4" tags="" position="1908.3333333333335,103.33333333333334">[[Back-&gt;tip3]]
+[[Continue-&gt;tip4]]</tw-passagedata><tw-passagedata pid="23" name="tip4" tags="" position="1908,103">[[Back-&gt;tip3]]
 
-4/6
+4/8
 
 The potato chips do nothing.
 
-[[Continue-&gt;tip5]]</tw-passagedata><tw-passagedata pid="24" name="tip5" tags="" position="1910,310">[[Back-&gt;tip4]]
+[[Continue-&gt;tip5]]</tw-passagedata><tw-passagedata pid="24" name="tip5" tags="" position="2110,103">[[Back-&gt;tip4]]
 
-5/6
+5/8
 
 When you mine coal manualy, you get 1 to 3 randomly.
 
-[[Continue-&gt;tip6]]</tw-passagedata><tw-passagedata pid="25" name="tip6" tags="" position="1710,310">[[Back-&gt;tip5]]
+[[Continue-&gt;tip6]]</tw-passagedata><tw-passagedata pid="25" name="tip6" tags="" position="2108,308">[[Back-&gt;tip5]]
 
-6/6
+6/8
 
-Money
----
-1 gallon of oil sells for $4, while 1 ton of coal sells for $43. Coal is **cheap**. You also don&#x27;t make any oil or coal while at the store or in the tips menu.</tw-passagedata></tw-storydata>
+1 gallon of oil sells for $4.
+
+[[Contiue-&gt;tip7]]</tw-passagedata><tw-passagedata pid="26" name="tip7" tags="" position="1908,305">[[Back-&gt;tip6]]
+
+7/8
+
+1 ton of coal sells for $43. Coal is **cheap**.
+
+[[Contiue-&gt;tip8]]</tw-passagedata><tw-passagedata pid="27" name="tip8" tags="" position="1708,305">[[Back-&gt;tip7]]
+
+8/8
+
+You do not make money while in the tips menu or at the store.</tw-passagedata></tw-storydata>
 
 <script title="Twine engine code" data-main="harlowe">/**
  * @license almond 0.3.0 Copyright (c) 2011-2014, The Dojo Foundation All Rights Reserved.
