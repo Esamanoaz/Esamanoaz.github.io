@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+
+<html>
+<head>
+<title>Breakout</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script type="text/javascript" src="https://static.codehs.com/gulp/3eef2fd81502f088a3ca9360374585b00f500f2b/chs-js-lib/chs.js"></script>
+
+
+<style>
+canvas {
+    border: 1px solid black;
+    display: inline-block;
+    vertical-align: top;
+}
+
+pre {
+    border: 1px solid black;
+    display: inline-block;
+    width: 400px;
+    height: 500px;
+    background-color: #F5F5F5;
+}
+</style>
+
+</head>
+
+<body>
+<h1>Breakout</h1>
+
+
+
+<canvas
+width="400"
+height="500"
+class="codehs-editor-canvas"></canvas>
+<pre id="console"></pre>
+
+<script>
+window.onload = function() {
+
+    /* Constants for bricks */
+var NUM_ROWS = 8;
+var BRICK_TOP_OFFSET = 10;
+var BRICK_SPACING = 2;
+var NUM_BRICKS_PER_ROW = 10;
+var BRICK_HEIGHT = 10;
+var SPACE_FOR_BRICKS = getWidth() - (NUM_BRICKS_PER_ROW + 1) * BRICK_SPACING;
+var BRICK_WIDTH = SPACE_FOR_BRICKS / NUM_BRICKS_PER_ROW;
+
+/* Constants for ball and paddle */
+var PADDLE_WIDTH = 80;
+var PADDLE_HEIGHT = 15;
+var PADDLE_OFFSET = 10;
+var PADDLE_Y = getHeight()-(PADDLE_HEIGHT+PADDLE_OFFSET);
+
+var BALL_RADIUS = 15;
+var DELAY = 20;
+
+var ball;
+var paddle;
+var dx = 3;
+var dy = 3;
+
+/*
+ * This code will run a game
+ * called Breakout.
+ * The user will control a
+ * paddle and bounce a ball
+ * back at bricks.
+ * The more bricks they break, the
+ * more points they will get
+*/
+function start(){
+	initBricks();
+	initBall();
+	initPaddle();
+	
+	// loops
+	mouseMoveMethod(movePaddle);
+	setTimer(loop, DELAY);
+}
+
+
+
+/* Loops */
+
+// Main loop
+function loop(){
+    moveBall();
+}
+
+
+
+/* Code for bricks */
+
+// Draws bricks at start
+function initBricks(){
+    for(var i = 0; i < NUM_ROWS; i++){
+        var y = BRICK_TOP_OFFSET+(BRICK_HEIGHT+BRICK_SPACING)*i;
+        
+        var cur_color = checkColor(i);
+        
+        for(var j = 0; j < NUM_BRICKS_PER_ROW; j++){
+            var x = BRICK_SPACING+(BRICK_WIDTH*j+BRICK_SPACING*j);
+            drawRect(BRICK_WIDTH, BRICK_HEIGHT, x, y, cur_color);
+        }
+    }
+}
+
+// Checks the color needed for each row and returns the value
+function checkColor(value){
+    var number = value;
+    if(number == 1 || number == 2){
+        return Color.red;
+    }else if(number == 3 || number == 4){
+        return Color.orange;
+    }else if(number == 5 || number == 6){
+        return Color.green;
+    }else {
+        return Color.blue;
+    }
+}
+
+
+
+/* Code for ball */
+
+// Initializes Ball
+function initBall(){
+    ball = new Circle(BALL_RADIUS);
+    ball.setPosition(getWidth()/2, getHeight()/2);
+    ball.setColor(Color.black);
+    add(ball);
+}
+
+function moveBall(){
+    // Bounces ball
+    if((ball.getX()-BALL_RADIUS < 0) || (ball.getX()+BALL_RADIUS > getWidth())){
+        dx = -dx;
+    }else if((ball.getY()-BALL_RADIUS < 0) || (ball.getY()+BALL_RADIUS > getHeight())){
+        dy = -dy;
+    }
+    
+    // move the ball
+    ball.move(dx, dy);
+}
+
+
+
+/* Code for Paddle*/
+
+// Initializes paddle
+function initPaddle(){
+    paddle = new Rectangle(PADDLE_WIDTH, PADDLE_HEIGHT);
+    paddle.setColor(Color.black);
+    paddle.setPosition(getWidth()/2-PADDLE_WIDTH/2, PADDLE_Y);
+    add(paddle);
+}
+
+// Move Paddle
+function movePaddle(e){
+    paddle.setPosition(e.getX()-PADDLE_WIDTH/2, PADDLE_Y);
+    if(paddle.getX() < 0){
+        paddle.setPosition(0, PADDLE_Y);
+    }else if(paddle.getX()+PADDLE_WIDTH > getWidth()){
+        paddle.setPosition(getWidth()-PADDLE_WIDTH, PADDLE_Y)
+    }
+}
+
+
+
+/* Drawing Functions */
+
+// Draws a rectangle
+function drawRect(w, h, x, y, c){
+    var rect = new Rectangle(w, h);
+    rect.setPosition(x, y);
+    rect.setColor(c);
+    add(rect);
+}
+
+
+    if (typeof start === 'function') {
+        start();
+    }
+};
+</script>
+
+</body>
+</html>
