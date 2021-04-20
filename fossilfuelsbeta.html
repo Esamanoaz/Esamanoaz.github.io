@@ -11,7 +11,7 @@
 
 <tw-story></tw-story>
 
-<tw-storydata name="Fossil Fuels Clicker" startnode="1" creator="Twine" creator-version="2.2.1" ifid="D7239745-BFF7-4091-95A7-87920C0AEA89" zoom="1" format="Harlowe" format-version="1.2.4" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">
+<tw-storydata name="Fossil Fuels Clicker" startnode="1" creator="Twine" creator-version="2.3.13" ifid="D7239745-BFF7-4091-95A7-87920C0AEA89" zoom="1" format="Harlowe" format-version="1.2.4" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">
 
 
 
@@ -167,13 +167,13 @@ or (if: $jobInterview is &quot;notComplete&quot;)[your Very //Important// [[Job 
     [[Fossil Fuels are fine-&gt;fine]]
     [[Fossil Fuels are polluting our enviroment-&gt;pollution]]</tw-passagedata><tw-passagedata pid="5" name="Job Interview" tags="" position="600,202" size="100,100">	You take a bus to your job interview. While you are on the bus, you wonder if you know enough about your job. Maybe someone in [[Town Hall]] can tell you more about fossil fuels.
     
-(if: $townHall is 5)[[[Go to job interview-&gt;job]]]</tw-passagedata><tw-passagedata pid="6" name="Mine" tags="" position="1400,600" size="100,100">=&gt;&lt;=
+(if: $townHall is 5)[[[Go to job interview-&gt;job]]]</tw-passagedata><tw-passagedata pid="6" name="Mine" tags="" position="1402,600" size="100,100">=&gt;&lt;=
 Money : [$money]&lt;replaceA|
 Coal : [$coal]&lt;replaceB|
 Miners : $miners
 
-Sell 1 ton of coal
-{(live: 1s)[(click: &quot;Sell 1 ton of coal&quot;)[(if: $coal &gt; 1999)[(set: $coal to $coal - 2000) (if: $prestige is 0)[(set: $money to $money + 53)] (else:)[(set: $money to (round:($money + 53) * ($prestige * 0.05)))] (replace: ?replaceB)[$coal] (replace: ?replaceA)[$money]]] ]}
+Sell all coal
+{(live: 1s)[(click: &quot;Sell all coal&quot;)[(if: $prestige is 0)[(set: $money to $money + ((53/2000) * $coal)) (set: $coal to 0)] (else:)[(set: $money to (round:($money + ((53/2000) * $coal)) * (1 + ($prestige * 0.25)))) (set: $coal to 0)] (replace: ?replaceB)[$coal] (replace: ?replaceA)[$money]] ]}
 {(live: 0.1s)[(set: $num to(random: 1,9)) Mine Coal (click: &quot;Mine Coal&quot;)[ (set: $coal to $coal + $num + $miners) (set: $ptotalCoal to $ptotalCoal + $num + $miners) (set: $totalCoal to $totalCoal + $num + $miners)] ]}
 
 {(live: 1s)[(set: $coal to $coal + $miners) (set: $ptotalCoal to $ptotalCoal + $miners) (set: $totalCoal to $totalCoal + $miners) (replace: ?replaceB)[$coal]]}
@@ -275,16 +275,17 @@ Deepwater Wells : $wells
 1.3
 &quot;Prestige&quot;
 ---
-* Bugs fixed:
+* Bugs/tweaks:
 ** WN passage edited
-** Chips putchased is updated with each purchase
+** Chips purchased is updated with each purchase
 ** The title page
+** Now sell all coal at once instead of in quantities of 2000
 
 * Added:
 ** Gems
 ** Prestige
 *** When you obtain 1000 potato chips, you can prestige
-*** Restart completely, but gain 5% increase in production
+*** Restart completely, but gain 25% increase price of coal and oil
 *** Keep one third of your money
 *** Upgrade menu
 ** Stats passage
@@ -356,7 +357,7 @@ Deepwater Wells : $wells
 * Increased the ammount of coal you can get from manualy mining from 1-2 to 1-3
 
 [[Back-&gt;startMenu]]</tw-passagedata><tw-passagedata pid="20" name="SellOil" tags="" position="1399,200" size="100,100">(if: $prestige is 0)[(set: $money to ($money + (2 * $oil)))]
-(else:)[(set: $money to (round: ($money + (2 * $oil)) * ($prestige * 0.05) ))]
+(else:)[(set: $money to (round: ($money + (2 * $oil)) * (1 + ($prestige * 0.25) )))]
 (set: $oil to 0)
 (go-to: &quot;Deepwater Wells&quot;)</tw-passagedata><tw-passagedata pid="21" name="Stats" tags="" position="1200,601" size="100,100">[[Back-&gt;Business]]
 (set: $chipsNeeded to 1000 - $chipsPurchased)
