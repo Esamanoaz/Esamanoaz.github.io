@@ -173,7 +173,7 @@ Coal : [$coal]&lt;replaceB|
 Miners : $miners
 
 Sell all coal
-{(live: 1s)[(click: &quot;Sell all coal&quot;)[(if: $prestige is 0)[(set: $money to $money + ((53/2000) * $coal)) (set: $coal to 0)] (else:)[(set: $money to (round:($money + ((53/2000) * $coal)) * (1 + ($prestige * 0.25)))) (set: $coal to 0)] (replace: ?replaceB)[$coal] (replace: ?replaceA)[$money]] ]}
+{(live: 1s)[(click: &quot;Sell all coal&quot;)[(if: $prestige is 0)[(set: $money to (round: $money + ((53/2000) * $coal))) (set: $coal to 0)] (else:)[(set: $money to (round:($money + ((53/2000) * $coal)) * (1 + ($prestige * 0.25)))) (set: $coal to 0)] (replace: ?replaceB)[$coal] (replace: ?replaceA)[$money]] ]}
 {(live: 0.1s)[(set: $num to(random: 1,9)) Mine Coal (click: &quot;Mine Coal&quot;)[ (set: $coal to $coal + $num + $miners) (set: $ptotalCoal to $ptotalCoal + $num + $miners) (set: $totalCoal to $totalCoal + $num + $miners)] ]}
 
 {(live: 1s)[(set: $coal to $coal + $miners) (set: $ptotalCoal to $ptotalCoal + $miners) (set: $totalCoal to $totalCoal + $miners) (replace: ?replaceB)[$coal]]}
