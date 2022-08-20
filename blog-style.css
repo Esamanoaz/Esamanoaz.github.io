@@ -1,0 +1,46 @@
+body {
+    font-family: Garamond, serif;
+    color:#EEE;
+    background-color: rgb(29, 29, 29);
+    padding: 18px;
+    text-align: left;
+    max-width: 636px;
+    position: relative;
+    margin: auto;
+    box-sizing: border-box;
+}
+
+nav {
+    text-align: right;
+}
+nav ul {
+    list-style-type: none;
+}
+
+nav li {
+    display: inline-block;
+    padding-right: 8px;
+}
+
+a {
+    color: rgb(211, 93, 93);
+    text-decoration: underline;
+}
+
+p, li {
+    font-size: 18px;
+    line-height: 1.2em;
+    color: rgb(200, 200, 200);
+}
+
+h1 {
+    font-size: 32px;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+h3 {
+    font-size: 21px;
+}
